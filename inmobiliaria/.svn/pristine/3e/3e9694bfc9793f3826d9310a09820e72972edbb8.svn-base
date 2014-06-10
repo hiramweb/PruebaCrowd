@@ -1,0 +1,83 @@
+<?php
+
+class Catalogos_model extends CI_Model {
+    //LOS MODELOS NO TIENEN MAS QUE FUNCIONES QUE SIRVEN PARA HACER TRANSACCIONES A LA BASE DE DATOS
+    public function __construct()
+    {
+        $this->load->database();
+    }
+
+    //Funcion para acceder al sistema
+    public function usuarios()//OBTIENE EL LISTADO DE REGISTROS DE LA TABLA DE DISPOSITIVOS
+    {
+        $sql = " SELECT * FROM TA01_CAT_USUARIOS"; 
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    
+    public function crearUsuario($usuario) 
+    {
+        
+        if ($this->existeUsuario($usuario) == false){
+            $sql = " INSERT INTO TA01_CAT_USUARIOS (T_NOMBRE, T_APELLIDOS, T_TELEFONO, T_CELULAR, T_DOMICILIO, T_COLONIA, T_USUARIO, T_PASSWORD, T_EMAIL, T_FACEBOOK, T_TWITTER, T_INFORMACION, T_TIPO_TRABAJADOR)";
+            $sql.= " VALUES ('$usuario->T_NOMBRE','$usuario->T_APELLIDOS','".$usuario->T_TELEFONO."','".$usuario->T_CELULAR."', '".$usuario->T_DOMICILIO."', '$usuario->T_COLONIA', '".$usuario->T_USUARIO."', '".$usuario->T_PASSWORD."', '".$usuario->T_EMAIL."', '".$usuario->T_FACEBOOK."', '".$usuario->T_TWITTER."', '".$usuario->T_INFORMACION."', '".$usuario->T_TIPO_TRABAJADOR."') ";
+            $query = $this->db->query($sql);
+            return $this->db->insert_id();
+        }else{
+            return 0;
+        }
+    }
+    
+    public function existeUsuario($usuario) 
+    {
+        $sql = "SELECT * FROM TA01_CAT_USUARIOS WHERE T_EMAIL ='$usuario->T_EMAIL' OR T_USUARIO='$usuario->T_USUARIO'"; 
+        $query = $this->db->query($sql);
+        if ($query->num_rows() == 0){
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
+    
+    public function guardarImagenDePerfil($img) 
+    {
+        $sql = "UPDATE TA01_CAT_USUARIOS SET T_RUTA_IMAGEN = '$img->T_NOMBRE' WHERE E_ID ='$img->E_ID'"; 
+        $this->db->query($sql);
+        if ($this->db->affected_rows() == 0){
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
+    
+    
+    
+    
+}
+
+
+class Usuario {
+    public $T_NOMBRE = ""; 
+    public $T_APELLIDOS  = ""; 
+    public $T_TELEFONO = ""; 
+    public $T_CELULAR  = ""; 
+    public $T_DOMICILIO = ""; 
+    public $T_COLONIA  = ""; 
+    public $T_USUARIO = ""; 
+    public $T_PASSWORD = ""; 
+    public $T_EMAIL  = ""; 
+    public $T_FACEBOOK  = ""; 
+    public $T_TWITTER  = ""; 
+    public $T_INFORMACION  = ""; 
+    public $T_TIPO_TRABAJADOR  = ""; 
+}
+
+class Img {
+    public $T_NOMBRE = ""; 
+    public $E_ID  = 0; 
+}
+
+
+?>

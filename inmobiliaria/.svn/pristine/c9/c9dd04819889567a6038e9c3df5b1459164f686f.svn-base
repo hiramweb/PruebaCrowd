@@ -1,0 +1,32 @@
+<?php
+class Inicio extends CI_Controller {
+
+    //Este constructor es para agregar los modelos que este Controllera va a necesitar para evitar la llamada de los modelos desde otro script
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('inmuebles_model');
+        $this->load->library('session');
+    }
+    
+    public function index(){
+        $session = $this->session->userdata('webId');
+        if(isset($session) && $session != null){
+            $data['title'] = 'Administración';
+            $content = $this->load->view('inicio/registrar_inmueble',$data,true);
+            // se carga el Layout de la vista que se va a necesitar
+            $this->load->view('site/LayoutGeneral', array('content' => $content));  
+        } else {
+            $this->load->view('error_page');
+        }
+    }
+    
+    public function verTipoInmuebles(){
+        $inmuebles = $this->inmuebles_model->verTipoInmuebles();
+        foreach($inmuebles as $val){
+            $arr[] = $val;
+        }
+        echo json_encode($arr);
+    }
+    
+}
+?>

@@ -1,0 +1,50 @@
+<?php
+
+class Inmuebles_model extends CI_Model {
+    //LOS MODELOS NO TIENEN MAS QUE FUNCIONES QUE SIRVEN PARA HACER TRANSACCIONES A LA BASE DE DATOS
+    public function __construct()
+    {
+        $this->load->database();
+    }
+    
+    public function verTipoInmuebles(){
+        $sql = " SELECT * FROM TA03_CAT_TIPO_INMUEBLES ";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    
+    public function verPropietarios(){
+        $sql = " SELECT E_ID, T_NOMBRE, T_APELLIDOS FROM TA04_CAT_PROPIETARIOS ";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    
+    public function verEstadosRepublica(){
+        $sql = " SELECT * FROM TA08_CAT_ESTADOS_REPUBLICA ";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    
+    public function verCaracteristicasInmuebles(){
+        $sql = " SELECT * FROM TA07_CAT_CARACTERISTICAS_INMUEBLES ";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    
+    public function insertarInmueble($TA03_REL_E_ID_TIPO_INMUEBLE, $TA04_REL_E_ID_PROPIETARIOS, $T_CONCEPTO, $T_TITULO, $F_PRECIO, $T_ESTADO, $T_MUNICIPIO, $T_COLONIA, $T_CALLE, $T_NUMERO_EXTERIOR, $T_CODIGO_POSTAL, $T_DESCRIPCION, $T_LATITUD, $T_LONGITUD){
+        $sql = " INSERT INTO TA02_CAT_INMUEBLES (TA03_REL_E_ID_TIPO_INMUEBLE, TA04_REL_E_ID_PROPIETARIOS, T_CONCEPTO, T_TITULO, F_PRECIO, T_ESTADO, T_MUNICIPIO, T_COLONIA, T_CALLE, T_NUMERO_EXTERIOR, T_CODIGO_POSTAL, T_DESCRIPCION, T_LATITUD, T_LONGITUD, FH_FECHA)";
+        $sql.= " VALUES ('$TA03_REL_E_ID_TIPO_INMUEBLE','$TA04_REL_E_ID_PROPIETARIOS','".$T_CONCEPTO."', '".$T_TITULO."', '$F_PRECIO', '".$T_ESTADO."', '".$T_MUNICIPIO."', '".$T_COLONIA."', '".$T_CALLE."', '".$T_NUMERO_EXTERIOR."', '".$T_CODIGO_POSTAL."', '".$T_DESCRIPCION."', '".$T_LATITUD."', '".$T_LONGITUD."', CURRENT_TIMESTAMP) ";
+        $query = $this->db->query($sql);
+        return $this->db->insert_id();
+    }
+    
+    public function insertCaracteristicaInmueble($TA02_REL_E_ID_INMUEBLE, $TA07_REL_E_ID_PROPIEDADES, $T_CANTIDAD, $T_FOTO){
+        $sql = " INSERT INTO TA05_REL_CARACTERISTICAS_INMUEBLES (TA02_REL_E_ID_INMUEBLE, TA07_REL_E_ID_PROPIEDADES, T_CANTIDAD, T_FOTO) ";
+        $sql.= " VALUES ('$TA02_REL_E_ID_INMUEBLE', '$TA07_REL_E_ID_PROPIEDADES', '".$T_CANTIDAD."', '".$T_FOTO."') ";
+        $query = $this->db->query($sql);
+        return $TA02_REL_E_ID_INMUEBLE;
+    }
+    
+}
+
+?>

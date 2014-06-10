@@ -1,0 +1,305 @@
+
+<link href="<?php echo URL?>assets/css/dropzone.css" rel="stylesheet" media="screen">
+<link href="<?php echo URL?>assets/css/basic.dropzone.css" rel="stylesheet" media="screen">
+
+<script src="<?php echo URL?>assets/js/catalogos/usuarios.js"></script>
+
+
+
+
+
+<!--Start Content-->
+<div id="content">
+    <!--Start Main Title-->
+    <div id="main-title-content" class="no-padding">
+        <img src="<?php echo IMG_THEME; ?>properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <div class="container">
+            <div class="panel">
+                <h1>Usuarios</h1>    
+                <p>Control de Usuarios</p>    
+            </div>
+        </div>
+    </div> <!--End Main Title-->
+        
+    <!--    News Carousel -->
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+            <dt><a href="#">News Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+            <dt><a href="#">Promo Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+            <dt><a href="#">Another Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+        </dl>
+    </div><!--  End News Carousel -->
+        
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="panel right-line">
+                    <!--  Start List Properties -->
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-user"></i></span> Nuestro Personal</h2>   
+                        </div>
+                        <div class="span4">
+                            <a href="#" id="btn_nuevoUsuario"><h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class=" icon-circle-arrow-up"></i></span> Nuevo Usuario</h3></a>   
+                        </div>
+                    </div>
+                    <div class="list-properties right-space">
+                        <div class="property ">
+
+                            <?php
+                            $x = 0;
+                            foreach ($usuarios as $u) {
+                                if ($x % 2 == 0) {
+                                    echo '<div class="row-fluid">';
+                                }
+                                ?>
+                                <div class="span6">
+                                    <div class="property-details">
+                                        <h3><a href="#"><?php echo $u["T_NOMBRE"] . " " . $u["T_APELLIDOS"]; ?></a></h3>
+                                        <p><?php echo $u["T_INFORMACION"]; ?></p>
+                                        <!--p>
+                                            <span class="label"><i class="icon-circle-arrow-right"></i> Bath : 10</span>
+                                            <span class="label"><i class="icon-circle-arrow-right"></i> Beds : 8</span>
+                                            <span class="label"><i class="icon-circle-arrow-right"></i> Pool : 2</span>
+                                            <span class="label"><i class="icon-circle-arrow-right"></i> Kicthen : 2</span>
+                                            <span class="label"><i class="icon-circle-arrow-right"></i> Office : 3</span>
+                                            <span class="label"><i class="icon-circle-arrow-right"></i> Music Room : 2</span>
+                                                    
+                                        "http://localhost/inmobiliaria/application/assets/img/personal/mariobros2.jpeg"
+                                        "http://localhost/inmobiliaria/application/assets/img/personal/mariobros.jpeg"
+                                        </p-->
+                                        <div class="agent-preview">
+                                            <div class="agent-image pull-left"  ><a href="#"><img src="<?php echo IMG ?>personal/<?php echo $u["T_RUTA_IMAGEN"]; ?>" class="img-polaroid" alt="property"></a></div>
+                                            <div class="agent-contant pull-right">
+                                                <ul class="unstyled">
+                                                    <li><i class="icon-briefcase"></i> <?php echo $u["T_TIPO_TRABAJADOR"]; ?> </li>
+                                                    <li><i class="icon-phone-sign"></i> <?php echo $u["T_TELEFONO"]; ?> </li>
+                                                    <li><i class="icon-phone"></i> <?php echo $u["T_CELULAR"]; ?> </li>
+                                                    <li><a href="mailto:<?php echo $u["T_EMAIL"]; ?>"> <i class="icon-envelope"></i> <?php echo $u["T_EMAIL"]; ?></a></li>
+                                                    <li><a href="https://facebook.com/<?php echo $u["T_FACEBOOK"]; ?>"><i class="icon-facebook"></i><?php echo $u["T_FACEBOOK"]; ?></a></li>
+                                                    <li><i class="icon-twitter"></i> <a href="https://twitter.com/<?php echo $u["T_TWITTER"]; ?>"><?php echo $u["T_TWITTER"]; ?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                if ($x % 2 == 1) {
+                                    echo '</div>'; //<!-- /div row-fluid -->
+                                }
+                                $x++;
+                            }
+
+                            if ($x % 2 == 1) {
+                                echo '</div>'; //<!-- /div row-fluid -->
+                            }
+                            ?> 
+                                    
+                        </div>
+                    </div><!--  End  List Properties -->
+                        
+                    <!--  Start Pagination -->
+                    <div class="pagination pagination-large">
+                        <ul>
+                            <li><a href="#"><i class=" icon-angle-left"></i></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#"><i class=" icon-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="panel">
+                    <!--Start Form Search Properties-->
+                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-search"></i></span>  Find Properties</h3>    
+                    <form class="bottom-line line-before" action="?" method="get">
+                        <label>Location</label>
+                        <input type="text" placeholder="Type Your Location" name="" value="" class="input-block-level" required=""/>
+                        <label>Radius</label>
+                        <select name="" class="input-block-level" required="">
+                            <option value="">This area only</option>
+                            <option value="">Within 1/4 mile</option>
+                            <option value="">Within 1/2 mile</option>
+                            <option value="">Within 1 mile</option>
+                            <option value="">Within 3 miles</option>
+                            <option value="">Within 5 miles</option>
+                            <option value="">Within 10 miles</option>
+                            <option value="">Within 15 miles</option>
+                            <option value="">Within 20 miles</option>
+                            <option value="">Within 30 miles</option>
+                            <option value="">Within 40 miles</option>
+                        </select>
+                        <div class="control-group-form">
+                            <div class="control-group half pull-left">
+                                <label class="control-label" >Min Price</label>
+                                <div class="controls">
+                                    <select name="" class="input-block-level" required="">
+                                        <option value="">All</option>
+                                        <option value="1">1000</option>
+                                        <option value="9">2000</option>
+                                        <option value="9">3000</option>
+                                        <option value="9">4000</option>
+                                        <option value="9">5000+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group half text-right pull-right">
+                                <label class="control-label">Max Price</label>
+                                <div class="controls">
+                                    <select name=""   class="input-block-level" required="">
+                                        <option value="">All</option>
+                                        <option value="1">10000</option>
+                                        <option value="9">20000</option>
+                                        <option value="9">30000</option>
+                                        <option value="9">40000</option>
+                                        <option value="9">50000+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="control-group-form">
+                            <div class="control-group half pull-left">
+                                <label class="checkbox">
+                                    <input type="checkbox" > Rent Property
+                                </label>
+                            </div>
+                            <div class="control-group half text-right pull-right">
+                                <label class="checkbox">
+                                    <input type="checkbox"> Sell Property
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <label>Bath</label>
+                        <select name=""  class="input-block-level " required="">
+                            <option value="">All</option>
+                            <option value="1">1</option>
+                            <option value="9">2</option>
+                            <option value="9">3</option>
+                            <option value="9">4</option>
+                            <option value="9">5+</option>
+                        </select>
+                        <label>Beds</label>
+                        <select name=""  class="input-block-level " required="">
+                            <option value="">All</option>
+                            <option value="1">1</option>
+                            <option value="9">2</option>
+                            <option value="9">3</option>
+                            <option value="9">4</option>
+                            <option value="9">5+</option>
+                        </select>
+                            
+                        <button type="submit" class="input-block-level btn-proper btn btn-large"> Search</button>
+                    </form>
+                    <!--End Form Search Properties-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--EndContent-->
+    
+<!-- start Modal -->
+    
+    
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Crear Usuarios</h3>
+    </div>
+    <div class="modal-body">
+
+        <!--h4>Text in a modal</h4>
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p-->
+                
+        <!-- Elemento para poner una linea intermedia <hr> -->
+                
+        <section class="">
+            <ul class="nav nav-tabs bot-tab">
+                <li class="active"><a href="#info">Informaci&oacute;n Personal</a></li>
+                <li class=""><a href="#profile">Foto de Perfil</a></li>
+            </ul>
+            <div class="tab-content custom-tab">
+                <div class="tab-pane active" id="info">
+                    <form action="catalogos/crearUsuario" id="crear-usuario"  method="post">      
+                        <div class="box-panel ">
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <label for="T_NOMBRE" accesskey="N">Nombre*</label>
+                                    <input type="text" class="input-block-level" name="T_NOMBRE" value="" id="T_NOMBRE" placeholder="Nombre">
+                                </div>
+                                <div class="field span6">
+                                    <label for="T_APELLIDOS" accesskey="A">Apellidos*</label>
+                                    <input type="text" class="input-block-level" name="T_APELLIDOS" value="" id="T_APELLIDOS" placeholder="Apellidos">
+                                </div>
+                            </div>
+                    
+                            <div class="row-fluid">
+                                <div class="field span6">
+                                    <label for="T_DOMICILIO" accesskey="D">Domicilio*</label>
+                                    <input type="text" class="input-block-level" name="T_DOMICILIO" value="" id="T_DOMICILIO" placeholder="Calle #Numero">
+                                </div>
+                                <div class="field span6">
+                                    <label for="T_COLONIA" accesskey="c">Colonia*</label>
+                                    <input type="text" class="input-block-level" name="T_COLONIA" value="" id="T_COLONIA" placeholder="Colonia">
+                                </div>
+                            </div>   
+                            <div class="row-fluid">
+                                <div class="field span6">
+                                    <label for="T_TELEFONO" accesskey="T"><i class="icon-phone-sign"></i>Tel&eacute;fono</label>
+                                    <input type="tel" class="input-block-level" name="T_TELEFONO" value="" id="T_TELEFONO" placeholder="( 000 ) 000 - 0000">
+                                </div>
+                                <div class="field span6">
+                                    <label for="T_CELULAR" accesskey="C"><i class="icon-phone"></i>Celular*</label>
+                                    <input type="tel" class="input-block-level" name="T_CELULAR" value="" id="T_CELULAR" placeholder="( 000 ) 000 - 0000">
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="field span6">
+                                    <label for="T_FACEBOOK" accesskey="F"><i class="icon-facebook"></i>acebook</label>
+                                    <input type="text" class="input-block-level" name="T_FACEBOOK" value="" id="T_FACEBOOK" placeholder="Nombre de usuario de Facebook">
+                                </div>
+                                <div class="field span6">
+                                    <label for="T_TWITTER" accesskey="T"><i class="icon-twitter"></i>Twitter</label>
+                                    <input type="text" class="input-block-level" name="T_TWITTER" value="" id="T_TWITTER" placeholder="Nombre de usuario de Twitter">
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <label for="T_INFORMACION" accesskey="C">Informaci&oacute;n Extra*</label>
+                                <textarea id="comments" rows="3" class="input-block-level" name="T_INFORMACION" placeholder="Por favor introduzca algo de informaci&oacute;n"></textarea>
+                            </div> 
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="profile">
+                    <div style="width: 510px; height: 350px; ">
+                        <form action="http://www.torrentplease.com/dropzone.php" class="dropzone dz-clickable" id="demo-upload">
+                            <!--div class="dz-default dz-message">
+                                <span>Drop files here to upload</span>
+                            </div-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>      
+
+
+    </div> <!-- Fin Modal Body -->
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Cancelar</button>
+        <button class="btn-proper btn" id="myModalButton" action="guardar">Guardar</button>
+    </div>
+        
+</div>
+    
+    
+<!-- End Modal -->
+    
+    
+    

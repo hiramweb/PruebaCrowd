@@ -1,0 +1,16 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Login extends CI_Controller {
+    
+    //Este constructor es para agregar los modelos que este Controllera va a necesitar para evitar la llamada de los modelos desde otro script
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('gpsdatos_dispositivos_model');
+    }
+    
+    public function index()
+    {
+            $this->load->view('login');
+    }
+    
+}

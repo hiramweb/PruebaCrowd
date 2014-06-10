@@ -1,0 +1,21 @@
+$( document ).ready(function() {
+    //Funcion para rellenar las opciones de TIPO INMUEBLE
+   /* $.ajax({
+        url:'http://localhost/~hiramweb/inmobiliaria/index.php/inicio/verTipoInmuebles',
+        type:"POST",
+        dataType:"json",
+        success: function(r){
+            console.log(r);
+            $.each(r, function(i, valor){
+                var opt = '<option value="' + valor.E_ID + '">' + valor.T_TIPO_INMUEBLE + '</option>';
+                $(opt).appendTo("#sel_tipoInmueble");
+            });
+        }
+      });*/
+    //alert("hola");
+    $("#btn_nuevoUsuario").click(function(){
+        $('#myModal').modal('show');
+    });
+
+    
+});

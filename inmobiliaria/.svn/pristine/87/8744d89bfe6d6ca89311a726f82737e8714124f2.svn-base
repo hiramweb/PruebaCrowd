@@ -1,0 +1,26 @@
+$( document ).ready(function() {
+   //Funcion para obtener una lista de inmuebles
+   $.ajax({
+        url: url + 'inicio/verInmuebleTablaAgregarImagenes',
+        type:"POST",
+        dataType:"json",
+        success: function(r){
+            $.each(r, function(i, valor){
+                var tr = '<tr class="gradeA">' +
+                                    '<td>' + valor.T_TITULO + '</td>' +
+                                    '<td>' + valor.T_ESTADO + '</td>' +
+                                    '<td>' + valor.T_MUNICIPIO + '</td>' +
+                                    '<td class="center">' + valor.T_COLONIA + '</td>' +
+                                    '<td class="center"><a href="#" onclick="agregaImagen(' + valor.E_ID + ')"><i class="icon-plus-sign"></i></a></td>' +
+                            '</tr>';
+                $(tr).appendTo("#tbl_Inmuebles");
+            });
+            $('#example').dataTable();
+        }
+      });
+
+}); // FIN DEL DOCUMENT READY
+
+function agregaImagen(id){
+    alert(id);
+}

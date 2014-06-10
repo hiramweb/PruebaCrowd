@@ -1,0 +1,31 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Login extends CI_Controller {
+    
+    //Este constructor es para agregar los modelos que este Controllera va a necesitar para evitar la llamada de los modelos desde otro script
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('account_model');
+    }
+    
+    public function index()
+    {
+        $this->load->view('login');
+    }
+    
+    public function acceder()
+    {
+        //$usuario = $this->input->post('usuario');
+        //$password = $this->input->post('password');
+        
+        //$data['datos'] = $this->account_model->usuarios($usuario, $password);
+        //$data['datos'] = "Hiram";
+        /*if($data){
+            echo "UNO";
+        } else {
+            echo "DOS";
+        }*/
+        $this->load->view('prueba');
+    }
+    
+}

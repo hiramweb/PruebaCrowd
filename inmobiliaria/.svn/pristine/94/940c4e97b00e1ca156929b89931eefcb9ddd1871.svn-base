@@ -1,0 +1,27 @@
+<?php
+class Catalogos extends CI_Controller {
+
+    //Este constructor es para agregar los modelos que este Controllera va a necesitar para evitar la llamada de los modelos desde otro script
+    public function __construct() {
+        parent::__construct();
+        
+        $session = $this->session->userdata('webId');
+        if(!isset($session) && $session == null){
+            $this->load->view('error_page');
+        }else{
+            $this->load->model('catalogos_model');
+            $this->load->library('session');
+        }
+    }
+    
+    public function usuarios(){
+            $data['title'] = 'Control de Usuarios';
+            $data['usuarios'] = $this->catalogos_model->usuarios();
+            $content = $this->load->view('catalogos/usuarios',$data,true);
+            // se carga el Layout de la vista que se va a necesitar
+            $this->load->view('site/LayoutGeneral', array('content' => $content));  
+        
+    }
+    
+}
+?>

@@ -1,0 +1,16 @@
+<?php
+class Inicio extends CI_Controller {
+
+    //Este constructor es para agregar los modelos que este Controllera va a necesitar para evitar la llamada de los modelos desde otro script
+    public function __construct() {
+        parent::__construct();
+        //$this->load->model('inmuebles_model');
+        $this->load->library('session');
+    }
+    
+    public function index(){
+        $this->load->view('inicio/inicio');
+    }
+    
+}
+?>

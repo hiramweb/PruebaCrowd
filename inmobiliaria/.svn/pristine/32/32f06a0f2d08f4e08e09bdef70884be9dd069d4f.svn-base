@@ -1,0 +1,46 @@
+<?php
+class Publico extends CI_Controller {
+    
+    //Este constructor es para agregar los modelos que este Controllera va a necesitar para evitar la llamada de los modelos desde otro script
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('publico_model');
+    }
+    
+    public function index(){
+        $inmuebles = $this->publico_model->InmueblesRecientes();
+
+        foreach ($inmuebles as $val){
+            $caracteristica[] = $this->publico_model->caracteristicasInmuebleMostrador($val['E_ID']);
+        }
+        //var_dump($caracteristica);
+        $data['title'] = 'Inmobiliaria';
+        $data['inmuebles'] = $inmuebles;
+        $data['caracteristicas'] = $caracteristica;
+
+        $publicContent = $this->load->view('public/index', $data, true); 
+        $this->load->view('public_Site/layout', array('publicContent' => $publicContent)); 
+    }
+    
+    public function InmueblesRecientes(){
+        
+    }
+    
+    public function detalles($E_ID){
+        $data['title'] = 'Inmobiliaria';
+        $data['inmueble'] = $this->publico_model->detalles($E_ID);
+        $data['fotos'] = $this->publico_model->detallesFotos($E_ID);
+        $data['detalles'] = $this->publico_model->detallesInmuebles($E_ID);
+        $data['descripcion'] = $this->publico_model->descripcionInmueble($E_ID);
+        $concepto = $this->publico_model->conceptoInmueble($E_ID);
+        foreach($concepto as $val){
+            $data['concepto'] = $val['T_CONCEPTO'];
+        }
+        $data['E_ID'] = $E_ID;
+        
+        $publicContent = $this->load->view('public/detalles', $data, true); 
+        $this->load->view('public_Site/layout', array('publicContent' => $publicContent)); 
+    }
+    
+}
+?>

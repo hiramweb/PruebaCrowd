@@ -1,0 +1,151 @@
+$( document ).ready(function() {
+
+    $("#btn_nuevoUsuario").click(function(){
+        $('#myModal').modal('show');
+        $("#a_profile").css("display","none");
+        $("#a_info").css("display","block");
+    });
+    
+    $("#myModalButton").click(function(){
+        $("#form-usuario").submit();
+        
+    });
+    
+      $("#form-usuario").validate({
+    
+        // Specify the validation rules
+        rules: {
+            T_NOMBRE: {
+                required: true,
+                maxlength: 50
+            },
+            T_APELLIDOS: {
+                required: true,
+                maxlength: 50
+            },
+            T_TELEFONO: {
+                required: true,
+                maxlength: 20,
+                number: true
+            },
+            T_CELULAR: {
+                required: true,
+                maxlength: 20,
+                number: true
+            },
+            T_USUARIO: {
+                required: true,
+                maxlength: 30
+            },
+            T_EMAIL: {
+                required: true,
+                email: true,
+                maxlength: 50
+            },
+            T_PASSWORD: {
+                required: true,
+                minlength: 5
+            },
+            T_PASSWORD2: {
+                required: true,
+                minlength: 5,
+                equalTo: "#T_PASSWORD"
+            },
+            T_TIPO_TRABAJADOR: {
+                required: true,
+                maxlength: 20
+            },
+            T_INFORMACION: {
+                maxlength: 500
+            }
+        },
+        
+        // Specify the validation error messages
+        messages: {
+            T_NOMBRE: {
+                required: "El campo no puede estar vacio",
+                maxlength: "El campo no puede ser tan extenso"
+            },
+            T_APELLIDOS: {
+                required: "El campo no puede estar vacio",
+                maxlength: "El campo no puede ser tan extenso"
+            },
+            T_PASSWORD: {
+                required: "El campo no puede estar vacio",
+                minlength: "El campo debe tener por lo menos 5 caracteres"
+            },
+            T_PASSWORD2: {
+                required: "El campo no puede estar vacio",
+                minlength: "El campo debe tener por lo menos 5 caracteres",
+                equalTo : "La contrasena no coincide"
+            },
+            T_EMAIL: {
+                required: "El campo no puede estar vacio",
+                email: "El formato del campo email es incorrecto"
+            },
+            T_USUARIO: {
+                required: "El campo no puede estar vacio",
+                maxlength: "El campo no puede ser tan extenso"
+            },
+            T_TELEFONO: {
+                required: "El campo no puede estar vacio",
+                maxlength: "El campo no puede ser tan extenso",
+                number: "El campo solo permite numeros"
+            },
+            T_CELULAR: {
+                required: "El campo no puede estar vacio",
+                maxlength: "El campo no puede ser tan extenso",
+                number: "El campo solo permite numeros"
+            },
+            T_TIPO_TRABAJADOR: {
+                required: "El campo no puede estar vacio",
+                maxlength: "El campo no puede ser tan extenso"
+            },
+            T_INFORMACION: {
+                maxlength: "El campo no puede ser tan extenso"
+            }
+        },
+        
+        submitHandler: function(form) {
+            var formulario = $("#form-usuario").serialize();
+            $.ajax({
+                url: url + 'catalogos/crearUsuario',
+                type:"POST",
+                data: formulario,
+                //dataType:"json",
+                success: function(r){
+                    if (r!= 0){
+                        console.log(r);
+                        $("#a_profile").css("display","block");
+                        $("#a_info").css("display","none");
+                        $("#a_profile > a").tab("show");
+                        $("#E_ID").val(r);
+                    }else{
+                        alert('El usuario ya existe en el sistema');
+                    }
+                }
+            });
+        }
+    });
+
+
+    Dropzone.options.myAwesomeDropzone = {
+    maxFiles: 1,
+    accept: function(file, done) {
+        console.log("uploaded");
+        console.log(file);
+        done();
+    },
+    success: function(file, response){
+                console.log(file);
+                console.log(response);
+            },
+    init: function() {
+        this.on("maxfilesexceeded", function(file){
+            alert("Solo un archivo por favor!");
+        });
+    }
+    };
+
+    
+});

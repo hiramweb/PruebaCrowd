@@ -1,0 +1,129 @@
+<div id="content">
+    <!--Start Main Title-->
+    <div id="main-title-content">
+        <img src="<?php echo URL ?>proper_theme/images/properties/slider/fslider/p1.jpg" id="bg" alt="main-title"/>
+        <div class="container">
+            <div class="panel">
+                <h1>Detalles de la Propiedad</h1>    
+                <p>Caracteristicas</p>    
+            </div>
+        </div>
+    </div> <!--End Main Title-->
+     <!--    News Carousel-->
+    <div class="news-carousel-wrapper">
+        <dl id="news-carousel" class="news-carousel-style">
+            <dt><a href="#">News Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+            <dt><a href="#">Promo Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+            <dt><a href="#">Another Link Here</a></dt>
+            <dd>Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem fermentum ipsum dolor sit amet, ipsum dolor sit amet.</dd>
+        </dl>
+    </div>
+    <!--    End News Carousel-->
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="panel right-line">
+                    <h2 class="main-heading bottom-line"><span class="main-circle-icon"><i class="icon-building"></i></span> Propiedad en: <?php echo $concepto ?></h2>   
+                  <!-- START DETAIL-->
+                    <div class="detail-properties right-space">
+                        <!-- START SLIDER -->
+                        <div class="big-image text-center">
+                            <div class="preloader"></div>
+                            <div class="desc-image">
+                                <?php foreach($descripcion as $val){ ?>
+                                <h3><?php echo $val['T_TITULO']; ?></h3>
+                                <?php } ?>
+                                <p>Estas son algunas imagenes ilustrativas acerca del Inmueble para que pueda apreciar con m&aacute;s detalle dicha propiedad. </p>
+                            </div>
+                            <img src="<?php echo URL."assets/img/inmuebles/inmueble_".$E_ID."/1.jpg" ?>" id="big-image-preview" alt="big-image-preview">
+                        </div>
+                        <div class="list_image_detail">
+                            <ul id="list_images_property">
+                                <?php foreach($fotos as $val){ ?>
+                                <li><a href="#" data-bigimage="<?php echo URL."assets/img/inmuebles/inmueble_".$E_ID."/".$val['T_NOMBRE_FOTO'] ?>" data-title="Interior 01" data-desc="Description 01 In convallis venenatis magna, nec interdum ipsum iaculis et. Nulla facilisi. Duis in neque malesuada vestibulum ut neque"><img src="<?php echo URL."assets/img/inmuebles/inmueble_".$E_ID."/".$val['T_NOMBRE_FOTO'] ?>" style="height: 80px;" alt="Thum"/></a></li>
+                                <?php } ?>
+                            </ul>
+                            <div class="clearfix"></div>
+                            <a id="prev2" class="prev" href="#">&lt;</a>
+                            <a id="next2" class="next" href="#">&gt;</a>
+                        </div>
+                        <!-- END SLIDER -->
+                        <h3>Descripci&oacute;n de la Propiedad</h3>
+                        <?php foreach($descripcion as $val) { ?>
+                        <p><?php echo utf8_decode($val['T_DESCRIPCION']) ?></p>
+                        <?php } ?>
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+                            <a class="addthis_button_facebook"></a>
+                            <a class="addthis_button_twitter"></a>
+                            <a class="addthis_button_pinterest_share"></a>
+                            <a class="addthis_button_google_plusone_share"></a>
+                            <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+                        </div>
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51965a0e6903b31d"></script>
+                        <!-- AddThis Button END -->
+                        <h3>Caracteristicas de la Propiedad</h3>
+                        <ul class="clear">
+                            <?php foreach($detalles as $val) { ?>
+                            <li><?php echo $val['T_CARACTERISTICA'].": " .$val['T_CANTIDAD']?></li>
+                            <?php } ?>
+                        </ul>
+                        <h3>Ubicaci&oacute;n del Inmueble</h3>
+                        <?php foreach($inmueble as $val) { ?>
+                        <p>
+                            Estado: <?php echo utf8_decode($val['T_ESTADO']); ?><br>
+                            Municipio: <?php echo utf8_decode($val['T_MUNICIPIO']); ?><br>
+                            Colonia: <?php echo utf8_decode($val['T_COLONIA']); ?><br>
+                            Calle: <?php echo utf8_decode($val['T_CALLE'])." ".$val['T_NUMERO_EXTERIOR'] ?><br>
+                            C&oacute;digo Postal: <?php echo $val['T_CODIGO_POSTAL']; ?><br>
+                            Metros de Frente: <?php echo $val['E_METROS_FRENTE']; ?><br>
+                            Metros de Profundidad: <?php echo $val['E_METROS_LARGO']; ?><br>
+                        </p>
+                        <?php } ?>
+                    </div>
+                   <!-- END DETAIL-->
+
+                </div>
+            </div>
+            <div class="span3">
+                <div class="panel">
+                    <!-- MAP LOCATION-->
+                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-map-marker"></i></span>  Location</h3>    
+                    <div class="bottom-line line-before">
+                        <iframe id="map-location"  width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=id&amp;geocode=&amp;q=arvada&amp;aq=&amp;sll=39.777936,-105.074272&amp;sspn=0.149605,0.338173&amp;ie=UTF8&amp;hq=&amp;hnear=Arvada,+Jefferson,+Colorado&amp;ll=39.802764,-105.087484&amp;spn=0.299124,0.676346&amp;t=m&amp;z=11&amp;output=embed"></iframe>   
+                    </div><!-- END MAP LOCATION -->
+                    <!-- Detail Agent -->
+                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-user"></i></span> Agent</h3>
+                    <div class="agent-panel bottom-line line-before">
+                        <a href="#" class="agent-image ">
+                            <img src="<?php echo IMG_THEME ?>lextres.jpg" class="img-polaroid" alt="agent" style="width: 90%; height: 60px">
+                        </a>
+                        <ul class="unstyled margin20">
+                            <li><i class="icon-phone"></i> (+89)98732.984 </li>
+                            <li><i class="icon-envelope"></i> agent@company.com</li>
+                            <li><i class="icon-facebook"></i> angel</li>
+                            <li><i class="icon-twitter"></i> @angel</li>
+                        </ul>
+                    </div><!-- END Detail Agent -->
+                    <!-- FORM CONTACT -->
+                    <h3 class="main-heading bottom-line line-before"><span class="main-circle-icon"><i class="icon-envelope-alt"></i></span> Contactanos</h3>
+                    <form>
+                        <label>Nombre</label>
+                        <input type="text" name="name" placeholder="Escribe tu Nombre" required="" class="input-block-level"/>
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Escribe tu Email" required="" class="input-block-level"/>
+                        <label>Mensaje</label>
+                        <textarea name="message" class="input-block-level" rows="5" placeholder="Escribe tu Mensaje" required=""></textarea>
+                        <div class="clearfix">
+                            <input type="submit" value="Send" class="btn btn-proper "/>
+                        </div>
+                    </form>
+                    <!-- END FORM CONTACT -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div><!--EndContent-->        
